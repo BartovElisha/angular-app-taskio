@@ -32,10 +32,10 @@
   </h1>
 
   <ul class="list-group">
-
-    <li *ngFor="let task of tasks" class="list-group-item d-flex justify-content-between align-items-center">
-      {{task}}
-      <app-button></app-button>
+    <li *ngFor="let task of tasks" [ngClass]="completedCss(task)"
+      class="list-group-item d-flex justify-content-between align-items-center">
+      {{task.title}}
+      <app-button *ngIf="!task.complete"></app-button>
     </li>
   </ul>
 </main>

@@ -1,5 +1,11 @@
 import { Component } from '@angular/core';
 
+interface Task {
+  title: string;
+  complete: boolean;
+  description?: string;
+}
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,11 +14,24 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'angular-app-taskio';
   today = new Date();
-  tasks: Array<string> = [
-      'Your first task',
-      'Your second task',
-      'Another task',
-      'Next Task'
+  tasks: Array<Task> = [
+    {
+      title: 'Your first task',
+      complete: false,
+      description: 'Eng Task' 
+    },
+    {
+      title: 'Your second task',
+      complete: false 
+    },
+    {
+      title: 'Another task',
+      complete: false 
+    },
+    {
+      title: 'task 4#',
+      complete: true 
+    }
   ];
 
   listStatusCss(): string {
@@ -25,5 +44,9 @@ export class AppComponent {
 
   getTaskById(id: number) {
     return this.tasks[id];
+  }
+
+  completedCss(task: Task): string {
+    return task.complete ? 'text-decoration-line-through' : ''
   }
 }
