@@ -23,27 +23,19 @@
 
   <p>{{title | titlecase}}</p>
 
-  <img [src]="getImagePath()">
+  <!-- <img [src]="getImagePath()"> -->
 
   <h1 class="text-center mb-3">Today's Tasks
+    <span [ngClass]="listStatusCss()">({{tasks.length}})</span>
+    <br />
     <small class="text-center">{{today | date}}</small>
   </h1>
 
   <ul class="list-group">
-    <li class="list-group-item d-flex justify-content-between align-items-center">
-      {{getTaskById(0)}}
+
+    <li *ngFor="let task of tasks" class="list-group-item d-flex justify-content-between align-items-center">
+      {{task}}
       <app-button></app-button>
-      <!-- <span class="badge bg-primary rounded-pill">.</span> -->
-    </li>
-    <li class="list-group-item d-flex justify-content-between align-items-center">
-      {{getTaskById(1)}}
-      <app-button></app-button>
-      <!-- <span class="badge bg-primary rounded-pill">.</span> -->
-    </li>
-    <li class="list-group-item d-flex justify-content-between align-items-center">
-      {{getTaskById(2)}}
-      <app-button></app-button>
-      <!-- <span class="badge bg-primary rounded-pill">.</span> -->
     </li>
   </ul>
 </main>
