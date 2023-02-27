@@ -11,36 +11,47 @@
           <a class="nav-link active" aria-current="page" href="#">Home</a>
         </li>
       </ul>
+      <!-- <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form> -->
     </div>
   </div>
 </nav>
 
 <main class="p-4 main-bg">
+  <!-- <h2 class="text-center my-3">
+        Today's Tasks
+    </h2> -->
+  <app-section-title [text]="sectionTitle1"></app-section-title>
 
-  <p>{{title | titlecase}}</p>
-  <!-- <img [src]="getImagePath()"> -->
-
-  <h1 class="text-center mb-3">Today's Tasks
-    <span [ngClass]="listStatusCss()">({{tasks.length}})</span>
-    <br />
-    <small class="text-center">{{today | date}}</small>
-  </h1>
+  <span [ngClass]="listStatusCss()">({{tasks.length}})</span>
+  <br>
+  <small class="text-secondary">{{ today | date }}</small>
 
   <ul class="list-group">
     <li *ngFor="let task of tasks" [ngClass]="completedCss(task)"
       class="list-group-item d-flex justify-content-between align-items-center">
       {{task.title | titlecase}}
       <div>
-        <app-button [icon]="'bi-pencil'"></app-button>
         <app-button [icon]="'bi-check-lg'" *ngIf="!task.complete"></app-button>
+        <app-button [icon]="'bi-pencil'"></app-button>
       </div>
+
     </li>
   </ul>
 
-  <h1 class="text-center mb-3">My Projects</h1>
+  <!-- <h2 class="text-center my-3">
+        My Projects
+    </h2> -->
+  <app-section-title [text]="sectionTitle2"></app-section-title>
+
   <div class="row">
-    <app-project-card *ngFor="let project of projects" [projectItem]="project"></app-project-card>
+    <div *ngFor="let project of projects" class="col-4 d-flex">
+      <app-project-card [projectItem]="project"></app-project-card>
+    </div>
   </div>
 
-
 </main>
+
+<app-footer [developerName]="developer"></app-footer>

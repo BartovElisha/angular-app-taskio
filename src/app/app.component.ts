@@ -21,6 +21,11 @@ export interface Project {
 export class AppComponent {
   title = 'angular-app-taskio';
   today = new Date();
+
+  sectionTitle1 = 'Today\'s Tasks';
+  sectionTitle2 = 'My Projects';
+  developer = 'Yoyo technolegies';
+
   tasks: Array<Task> = [
     {
       title: 'Your first task',
@@ -41,20 +46,20 @@ export class AppComponent {
     }
   ];
 
-  projects: Array<Project> = [
-    {
-      title: 'My First Project',
-      description: 'eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffdf df df df df dddddddddddddddddddddddddddddddddf  df df df f',
-      image: 'https://cdn.pixabay.com/photo/2023/02/20/07/26/problem-7801590__340.jpg',
-      status: 'PLANNED'
-    },
-    {
-      title: 'My second Project',
-      description: 'Project 2',
-      image: 'https://cdn.pixabay.com/photo/2016/06/25/12/55/art-1478831__340.jpg',
-      status: 'DONE'
-    }
-  ];
+    projects: Array<Project> = [
+        {
+            title: 'my first project',
+            description: 'such an awesome project, I am sure it would be a huge success.',
+            image: 'https://cdn.pixabay.com/photo/2023/02/20/07/26/problem-7801590__340.jpg',
+            status: 'PLANNED'
+        },
+        {
+            title: 'Art project',
+            description: 'because I love creating art',
+            image: 'https://cdn.pixabay.com/photo/2016/06/25/12/55/art-1478831__340.jpg',
+            status: 'IN PROGRESS'
+        }
+    ];
 
   listStatusCss(): string {
     return this.tasks.length <= 3 ? 'text-success' : 'text-dark';
