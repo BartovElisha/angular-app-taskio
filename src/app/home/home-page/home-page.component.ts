@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Project, Task } from '../app.component';
+import { Project, Task } from '../../app.component';
 
 @Component({
   selector: 'app-home-page',
