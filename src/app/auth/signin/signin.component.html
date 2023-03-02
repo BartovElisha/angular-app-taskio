@@ -1,0 +1,18 @@
+<h2 class="text-center">
+  Signin to Our App
+</h2>
+
+<form [formGroup]="signinForm" (ngSubmit)="onSubmit()" class="col-6 m-auto">
+  <div class="mb-3">
+    <label for="email" class="form-label">Email:</label>
+    <input formControlName="email" type="text" class="form-control" id="email" placeholder="name@email.com">
+  </div>
+  <div class="mb-3">
+    <label for="password" class="form-label">Password:</label>
+    <input formControlName="password" type="password" class="form-control" id="password">
+  </div>
+
+  <button [disabled]="signinForm.invalid" type="submit" class="btn btn-primary btn-lg">
+    Sign Up
+  </button>
+</form>
