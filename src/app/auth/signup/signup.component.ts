@@ -8,15 +8,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class SignupComponent {
 
-  // nameField = '';
-
-  // formValid(): boolean {
-  //     return (this.nameField.length >= 2);
-  // }
-
   signupForm = new FormGroup({
       name: new FormControl('', {
-          validators: Validators.required
+          validators: [Validators.required, Validators.maxLength(10)]
       }),
       email: new FormControl('', {
           validators: [Validators.required, Validators.email]
@@ -24,7 +18,11 @@ export class SignupComponent {
       password: new FormControl('', {
           validators: [Validators.required, Validators.minLength(6)]
       })
-  })
+  });
+
+  getFieldControl(field: string): FormControl {
+    return this.signupForm.get(field) as FormControl;
+  }
 
   onSubmit() {
       if (this.signupForm.invalid) {
