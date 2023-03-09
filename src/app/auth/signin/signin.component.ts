@@ -16,6 +16,10 @@ export class SigninComponent {
       })
   })
 
+  getFieldControl(field: string): FormControl {
+    return this.signinForm.get(field) as FormControl;
+  }
+
   onSubmit() {
       if (this.signinForm.invalid) {
           return;
