@@ -1,1 +1,30 @@
-<p>about-page works!</p>
+<h2 class="text-center">
+  About Us
+</h2>
+
+<form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="col-6 m-auto">
+  <div class="mb-3">
+    <label for="name" class="form-label">Name:</label>
+    <input formControlName="name" type="text" id="name" class="form-control">
+  </div>
+
+  <!-- <app-field-error [formField]="getFieldControl('name')"></app-field-error> -->
+
+  <div class="mb-3">
+    <label for="email" class="form-label">Email:</label>
+    <input formControlName="email" type="text" class="form-control" id="email" placeholder="name@email.com">
+  </div>
+
+  <!-- <app-field-error [formField]="getFieldControl('email')"></app-field-error> -->
+
+  <div class="mb-3">
+    <label for="question" class="form-label">How can we asist you?</label>
+    <input formControlName="question" type="textarea" class="form-control" id="password">
+  </div>
+
+  <!-- <app-field-error [formField]="getFieldControl('question')"></app-field-error> -->
+
+  <button [disabled]="contactForm.invalid" type="submit" class="btn btn-primary btn-lg">
+    Sign Up
+  </button>
+</form>

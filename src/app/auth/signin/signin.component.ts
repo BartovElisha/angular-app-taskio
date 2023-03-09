@@ -24,7 +24,5 @@ export class SigninComponent {
       if (this.signinForm.invalid) {
           return;
       }
-
-      console.log(this.signinForm.value);
   }
 }

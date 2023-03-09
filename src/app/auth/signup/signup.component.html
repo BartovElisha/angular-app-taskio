@@ -5,7 +5,7 @@
 <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="col-6 m-auto">
   <div class="mb-3">
     <label for="name" class="form-label">Name:</label>
-    <input formControlName="name" type="text" id="name" class="form-control">
+    <input #nameFieldRef formControlName="name" type="text" id="name" class="form-control">
 
     <!-- <input [(ngModel)]="nameField" #nameFieldRef="ngModel" required minlength="2" type="text" class="form-control"
                id="name">
