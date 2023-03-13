@@ -7,25 +7,27 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./about-page.component.scss']
 })
 export class AboutPageComponent {
-  contactForm = new FormGroup({
-      name: new FormControl('', {
-          validators: [Validators.required, Validators.maxLength(30)]
-      }),
-      email: new FormControl('', {
-          validators: [Validators.required, Validators.email]
-      }),
-      question: new FormControl('', {
-          validators: [Validators.required, Validators.minLength(2), Validators.maxLength(1024)]
-      })
-  });
+    contactForm = new FormGroup({
+        name: new FormControl('', {
+            validators: [Validators.required, Validators.minLength(2)]
+        }),
+        email: new FormControl('', {
+            validators: [Validators.required, Validators.email]
+        }),
+        comment: new FormControl('', {
+            validators: [Validators.required, Validators.minLength(6)]
+        })
+    })
 
-  getFieldControl(field: string): FormControl {
-    return this.contactForm.get(field) as FormControl;
-  }
+    getFieldControl(fieldName: string): FormControl {
+        return this.contactForm.get(fieldName) as FormControl;
+    }
 
-  onSubmit() {
-      if (this.contactForm.invalid) {
-          return;
-      }
-  }
+    onSubmit() {
+        if (this.contactForm.invalid) {
+            return;
+        }
+
+        console.log(this.contactForm.value);
+    }
 }
