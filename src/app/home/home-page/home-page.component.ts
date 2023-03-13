@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ApiService } from 'src/app/core/api.service';
 import { Project, Task } from '../../app.component';
 
 @Component({
@@ -6,12 +7,18 @@ import { Project, Task } from '../../app.component';
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss']
 })
-export class HomePageComponent {
+export class HomePageComponent implements OnInit {
   title = 'angular-app-taskio';
   today = new Date();
 
   sectionTitle1 = 'Today\'s Tasks';
   sectionTitle2 = 'My Projects';
+
+  constructor(private api: ApiService) {}
+  
+  ngOnInit(): void {
+    this.api.getUserPosts();
+  }
   
   tasks: Array<Task> = [
     {
