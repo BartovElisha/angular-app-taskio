@@ -1,5 +1,6 @@
 import { AfterViewChecked, AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { LoggerService } from 'src/app/core/logger.service';
 
 @Component({
   selector: 'app-signup',
@@ -7,6 +8,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit, AfterViewInit, AfterViewChecked, OnDestroy {
+
+  constructor(private logger: LoggerService) {}
 
   @ViewChild('nameFieldRef') nameField!: ElementRef; 
  
@@ -31,7 +34,8 @@ export class SignupComponent implements OnInit, AfterViewInit, AfterViewChecked,
   }
 
   ngAfterViewInit(): void {
-    console.log('ngAfterViewInit');
+    this.logger.log('ngAfterViewInit');
+    // console.log('ngAfterViewInit');
     
     this.nameField.nativeElement.focus();
   }

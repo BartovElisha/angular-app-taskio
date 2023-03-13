@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component } from '@angular/core';
+import { SessionService } from './core/session.service';
 
 export interface Task {
   title: string;
@@ -18,7 +19,13 @@ export interface Project {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
   developer = 'Yoyo technolegies';
+
+  constructor(private session: SessionService) {}
+
+  ngAfterViewInit() {
+    this.session.redirectToHome();
+  }
 
 }
