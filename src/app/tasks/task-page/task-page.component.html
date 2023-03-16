@@ -1,0 +1,35 @@
+<h2 class="text-center my-3 text-danger">
+  Today's Tasks
+</h2>
+
+<h5 class="text-secondary text-center mb-4">
+  Mar 16, 2013
+</h5>
+
+<form [formGroup]="addTaskForm" (ngSubmit)="onSubmit()" class="row mb-4">
+  <div class="col-4">
+    <input formControlName="title" type="text" class="form-control" placeholder="Title">
+  </div>
+  <div class="col-6">
+    <input formControlName="description" type="text" class="form-control" placeholder="Description">
+  </div>
+  <div class="col-2">
+    <button [disabled]="addTaskForm.invalid" type="submit" class="btn btn-primary">Add</button>
+  </div>
+</form>
+
+<p>Total: {{tasks.length}}</p>
+
+<ul class="list-group">
+  <li *ngFor="let task of tasks" class="list-group-item d-flex justify-content-between align-items-center">
+    {{task.title}} - {{task.description}}
+    <div>
+      <button class="btn btn-light">
+        <i class="bi bi-pencil text-primary"></i>
+      </button>
+      <button class="btn btn-light">
+        <i class="bi bi-trash text-danger"></i>
+      </button>
+    </div>
+  </li>
+</ul>

@@ -7,6 +7,8 @@ import { AboutModule } from './about/about.module';
 import { HomeModule } from './home/home.module';
 import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
+import { CoreModule } from './core/core.module';
+import { TasksModule } from './tasks/tasks.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { AuthModule } from './auth/auth.module';
     AboutModule,
     SharedModule,
     AuthModule,
-    AppRoutingModule
+    AppRoutingModule,
+    CoreModule,
+    TasksModule
   ],
   providers: [],
   bootstrap: [AppComponent]

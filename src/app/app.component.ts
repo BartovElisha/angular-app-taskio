@@ -2,9 +2,9 @@ import { AfterViewChecked, AfterViewInit, Component } from '@angular/core';
 import { SessionService } from './core/session.service';
 
 export interface Task {
-  title: string;
-  complete: boolean;
-  description?: string;
+  title?: string | null;
+  complete?: boolean | null;
+  description?: string | null;
 }
 
 export interface Project {
