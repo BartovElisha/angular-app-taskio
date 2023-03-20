@@ -32,4 +32,12 @@ export class ApiService {
             { headers: { 'Content-Type': 'application/json' }}
         );
     }
+
+    updateTask(id: string, task: Task): Observable<Task> {
+        return this.http.put<Task>(
+            `http://localhost:3000/tasks/${id}`,
+            task,
+            { headers: { 'Content-Type': 'application/json' }}
+        );        
+    }
 }

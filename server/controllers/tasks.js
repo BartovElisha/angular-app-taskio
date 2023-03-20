@@ -64,8 +64,8 @@ module.exports = {
     updateDetails: async function (req, res, next) {
         try {
             const schema = joi.object({
-                title: joi.string().min(2).max(256).required(),
-                description: joi.string().min(2).max(1024).required(),
+                title: joi.string().min(2).max(256),
+                description: joi.string().min(2).max(1024),
                 complete: joi.boolean(),
             }).min(1);
 

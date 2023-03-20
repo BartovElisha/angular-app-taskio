@@ -32,7 +32,8 @@ export class TaskPageComponent implements OnInit {
     constructor(private api: ApiService) { }
 
     getTasks() {
-        this.api.getTasks().subscribe({
+        this.api.getTasks()
+        .subscribe({
             next: (data: Array<Task>) => {
                 this.tasks = data;
             },
@@ -49,8 +50,10 @@ export class TaskPageComponent implements OnInit {
             return;
         }
 
-        this.api.addTask(this.addTaskForm.value).subscribe({
+        this.api.addTask(this.addTaskForm.value)
+        .subscribe({
             next: (data: Task) => {
+                this.addTaskForm.reset();  // Clear inputs fields
                 this.getTasks();
             },
             error: (err) => console.log(err)
@@ -62,11 +65,30 @@ export class TaskPageComponent implements OnInit {
             return;
         }
 
-        this.api.deleteTask(task._id).subscribe({
+        this.api.deleteTask(task._id)
+        .subscribe({
             next: (data: Task) => {
                 this.getTasks();
             },
             error: (err) => console.log(err)
         });
+    }
+
+    completedCss(task: Task): string {
+        return task.complete ? 'text-decoration-line-through' : '';
+    }
+    
+    onComplete(task: Task) {
+        if(!task._id) {
+            return;
+        }
+
+        this.api.updateTask(task._id, { complete: true })
+        .subscribe({
+            next: (data: Task) => {
+                this.getTasks();
+            },
+            error: (err) => console.log(err)
+        });        
     }
 }

@@ -21,12 +21,16 @@
 <p>Total: {{tasks.length}}</p>
 
 <ul class="list-group">
-  <li *ngFor="let task of tasks" class="list-group-item d-flex justify-content-between align-items-center">
+  <li *ngFor="let task of tasks" [ngClass]="completedCss(task)"
+    class="list-group-item d-flex justify-content-between align-items-center">
     {{task.title}} - {{task.description}}
     <div>
-      <button class="btn btn-light">
+      <button *ngIf="!task.complete" (click)="onComplete(task)" class="btn btn-light">
         <i class="bi bi-pencil text-primary"></i>
       </button>
+      <span *ngIf="task.complete">
+        <i class="bi bi-check-lg text-primary"></i>
+      </span>
       <button (click)="onDelete(task)" class="btn btn-light">
         <i class="bi bi-trash text-danger"></i>
       </button>
