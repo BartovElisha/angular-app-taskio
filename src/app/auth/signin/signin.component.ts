@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { User } from 'src/app/app.component';
+import { ApiService } from 'src/app/core/api.service';
 
 @Component({
   selector: 'app-signin',
@@ -7,6 +10,12 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./signin.component.scss']
 })
 export class SigninComponent {
+
+  constructor(
+        private api: ApiService,
+        private router: Router
+  ) {  }
+
   signinForm = new FormGroup({
       email: new FormControl('', {
           validators: [Validators.required, Validators.email]
@@ -21,8 +30,19 @@ export class SigninComponent {
   }
 
   onSubmit() {
-      if (this.signinForm.invalid) {
-          return;
-      }
+    if (this.signinForm.invalid) {
+        return;
+    }
+
+    console.log(this.signinForm.value);
+
+    this.api.login(this.signinForm.value).subscribe({
+        next: (data: User) => {
+            // console.log(data);
+            if (data.token) this.api.setToken(data.token)
+            this.router.navigate(['home']);
+        },
+        error: (err) => console.log(err)
+    })
   }
 }

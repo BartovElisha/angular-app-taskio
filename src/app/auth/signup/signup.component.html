@@ -6,21 +6,8 @@
   <div class="mb-3">
     <label for="name" class="form-label">Name:</label>
     <input #nameFieldRef formControlName="name" type="text" id="name" class="form-control">
-
-    <!-- <input [(ngModel)]="nameField" #nameFieldRef="ngModel" required minlength="2" type="text" class="form-control"
-               id="name">
-        <p>The name is: {{nameField}}</p>
-        <div *ngIf="nameFieldRef.invalid && (nameFieldRef.dirty || nameFieldRef.touched)" class="text-danger">
-            <div *ngIf="nameFieldRef.errors?.['required']">
-                Name is required
-            </div>
-            <div *ngIf="nameFieldRef.errors?.['minlength']">
-                Name must be at least 2 chars.
-            </div>
-        </div> -->
   </div>
 
-  <!-- Error Message -->
   <app-field-error [formField]="getFieldControl('name')"></app-field-error>
 
   <div class="mb-3">
@@ -28,7 +15,6 @@
     <input formControlName="email" type="text" class="form-control" id="email" placeholder="name@email.com">
   </div>
 
-  <!-- Error Message -->
   <app-field-error [formField]="getFieldControl('email')"></app-field-error>
 
   <div class="mb-3">
@@ -36,7 +22,6 @@
     <input formControlName="password" type="password" class="form-control" id="password">
   </div>
 
-  <!-- Error Message -->
   <app-field-error [formField]="getFieldControl('password')"></app-field-error>
 
   <button [disabled]="signupForm.invalid" type="submit" class="btn btn-primary btn-lg">

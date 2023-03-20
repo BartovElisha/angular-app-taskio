@@ -1,5 +1,7 @@
 import { AfterViewChecked, AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ApiService } from 'src/app/core/api.service';
 import { LoggerService } from 'src/app/core/logger.service';
 
 @Component({
@@ -9,7 +11,11 @@ import { LoggerService } from 'src/app/core/logger.service';
 })
 export class SignupComponent implements OnInit, AfterViewInit, AfterViewChecked, OnDestroy {
 
-  constructor(private logger: LoggerService) {}
+  constructor(
+    private logger: LoggerService,
+    private api: ApiService,
+    private router: Router
+  ) {}
 
   @ViewChild('nameFieldRef') nameField!: ElementRef; 
  
@@ -49,8 +55,17 @@ export class SignupComponent implements OnInit, AfterViewInit, AfterViewChecked,
   }
 
   onSubmit() {
-      if (this.signupForm.invalid) {
-          return;
-      }
+    if (this.signupForm.invalid) {
+        return;
+    }
+
+    console.log(this.signupForm.value);
+
+    this.api.signup(this.signupForm.value).subscribe({
+        next: (data) => {
+            this.router.navigate(['login']);
+        },
+        error: (err) => console.log(err)
+    })
   }
 }

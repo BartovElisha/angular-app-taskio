@@ -31,9 +31,7 @@ module.exports = {
                 token: token,
                 id: user._id,
                 email: user.email,
-                name: user.name,
-                isBiz: user.isBiz,
-                isAdmin: user.isAdmin
+                name: user.name
             });
         }
         catch (err) {
@@ -48,8 +46,7 @@ module.exports = {
             const schema = joi.object({
                 name: joi.string().required().min(2).max(256),
                 email: joi.string().min(6).max(256).required().email(),
-                password: joi.string().min(6).max(1024).required(),
-                isBiz: joi.boolean().required()
+                password: joi.string().min(6).max(1024).required()
             });
 
             const { error, value } = schema.validate(req.body);
@@ -69,8 +66,7 @@ module.exports = {
             const newUser = new User({
                 name: value.name,
                 email: value.email,
-                password: hash,
-                isBiz: value.isBiz,
+                password: hash
             });
 
             await newUser.save();
@@ -78,9 +74,7 @@ module.exports = {
             res.json({
                 id: newUser._id,
                 name: newUser.name,
-                email: newUser.email,
-                isBiz: newUser.isBiz,
-                isAdmin: newUser.isAdmin
+                email: newUser.email
             })
         }
         catch (err) {

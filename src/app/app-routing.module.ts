@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'about', component: AboutPageComponent },
   { path: 'tasks', component: TaskPageComponent }, 
   { path: 'signup', component: SignupComponent },  
-  { path: 'signin', component: SigninComponent }  
+  { path: 'login', component: SigninComponent }  
 ];
 
 @NgModule({

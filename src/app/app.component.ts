@@ -1,4 +1,6 @@
 import { AfterViewChecked, AfterViewInit, Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { ApiService } from './core/api.service';
 import { SessionService } from './core/session.service';
 
 export interface Task {
@@ -9,11 +11,21 @@ export interface Task {
 }
 
 export interface Project {
-    title: string;
-    description: string;
-    image: string;
-    status: 'PLANNED' | 'IN PROGRESS' | 'DONE';  
+  title: string;
+  description: string;
+  image: string;
+  status: 'PLANNED' | 'IN PROGRESS' | 'DONE';  
 }
+
+export interface User {
+  _id?: string | null;
+  name?: string | null;
+  email?: string | null;
+  password?: string | null;
+  token?: string | null;
+}
+
+
 
 @Component({
   selector: 'app-root',
@@ -23,10 +35,18 @@ export interface Project {
 export class AppComponent implements AfterViewInit {
   developer = 'Yoyo technolegies';
 
-  constructor(private session: SessionService) {}
+  constructor(
+    private session: SessionService,
+      private api: ApiService,
+      private router: Router    
+    ) {}
 
   ngAfterViewInit() {
     this.session.redirectToHome();
   }
 
+  logout() {
+      this.api.deleteToken();
+      this.router.navigate(['login']);
+  }  
 }
