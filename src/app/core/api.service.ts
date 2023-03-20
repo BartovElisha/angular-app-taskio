@@ -25,4 +25,11 @@ export class ApiService {
             { headers: { 'Content-Type': 'application/json' } }
         )
     }    
+
+    deleteTask(id: string): Observable<Task> {
+        return this.http.delete<Task>(
+            `http://localhost:3000/tasks/${id}`,
+            { headers: { 'Content-Type': 'application/json' }}
+        );
+    }
 }

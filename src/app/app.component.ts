@@ -2,6 +2,7 @@ import { AfterViewChecked, AfterViewInit, Component } from '@angular/core';
 import { SessionService } from './core/session.service';
 
 export interface Task {
+  _id?: string | null;
   title?: string | null;
   complete?: boolean | null;
   description?: string | null;
