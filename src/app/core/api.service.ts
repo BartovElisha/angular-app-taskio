@@ -8,6 +8,8 @@ import { Task } from '../app.component';
 })
 export class ApiService {
 
+    serverUrl = 'http://localhost:3000/';
+
     constructor(private http: HttpClient) { }
 
     getUserPosts() {
@@ -15,27 +17,39 @@ export class ApiService {
     }
 
     getTasks(): Observable<Array<Task>> {
-        return this.http.get<Array<Task>>('http://localhost:3000/tasks');
+        return this.http.get<Array<Task>>(`${this.serverUrl}tasks`);
+    }
+
+    // Global post Function
+    POST<T>(endpoint: string, data: T): Observable<T> {
+        return this.http.post<T>(
+            `${this.serverUrl}${endpoint}`,
+            data,
+            { headers: { 'Content-Type': 'application/json' } }
+        )
     }
 
     addTask(task: Task): Observable<Task> {
-        return this.http.post<Task>(
-            'http://localhost:3000/tasks',
-            task,
-            { headers: { 'Content-Type': 'application/json' } }
-        )
+        return this.POST('tasks',task);
+        
+        // Old version
+        // return this.http.post<Task>(
+        //     `${this.serverUrl}tasks`,
+        //     task,
+        //     { headers: { 'Content-Type': 'application/json' } }
+        // )
     }    
 
     deleteTask(id: string): Observable<Task> {
         return this.http.delete<Task>(
-            `http://localhost:3000/tasks/${id}`,
+            `${this.serverUrl}tasks/${id}`,
             { headers: { 'Content-Type': 'application/json' }}
         );
     }
 
     updateTask(id: string, task: Task): Observable<Task> {
         return this.http.put<Task>(
-            `http://localhost:3000/tasks/${id}`,
+            `${this.serverUrl}tasks/${id}`,
             task,
             { headers: { 'Content-Type': 'application/json' }}
         );        
