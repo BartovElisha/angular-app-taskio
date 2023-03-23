@@ -11,7 +11,7 @@ export class ApiService {
     serverUrl = 'http://localhost:3000/';
 
     // private token = ''
-    TOKEN_KEY = 'token'
+    private TOKEN_KEY = 'token'
 
     setToken(value: string) {
         localStorage.setItem(this.TOKEN_KEY, value);

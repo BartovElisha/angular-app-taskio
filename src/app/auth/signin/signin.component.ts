@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/app.component';
 import { ApiService } from 'src/app/core/api.service';
+import { AuthService } from 'src/app/core/auth.service';
 
 @Component({
   selector: 'app-signin',
@@ -13,7 +14,8 @@ export class SigninComponent {
 
   constructor(
         private api: ApiService,
-        private router: Router
+        private router: Router,
+        private auth: AuthService
   ) {  }
 
   signinForm = new FormGroup({
@@ -40,7 +42,7 @@ export class SigninComponent {
         next: (data: User) => {
             // console.log(data);
             if (data.token) this.api.setToken(data.token)
-            this.router.navigate(['home']);
+            this.router.navigate([this.auth.redirectUrl]);
         },
         error: (err) => console.log(err)
     })
