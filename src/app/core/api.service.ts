@@ -91,6 +91,17 @@ export class ApiService {
         )
     }
 
+    deleteProject(id: string): Observable<Project> {
+        return this.http.delete<Project>(
+            `${this.serverUrl}projects/${id}`,
+            {
+                headers: {
+                    'x-auth-token': this.getToken()
+                }
+            }
+        )
+    }
+
     updateTask(id: string, task: Task): Observable<Task> {
         return this.http.put<Task>(
             `${this.serverUrl}tasks/${id}`,

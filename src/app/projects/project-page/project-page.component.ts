@@ -13,9 +13,23 @@ export class ProjectPageComponent implements OnInit  {
     constructor(private api: ApiService) {
     }
 
-    ngOnInit(): void {
+    getProjects() {
         this.api.getProjects().subscribe({
             next: (data: Array<Project>) => this.projects = data,
+            error: (err) => console.log(err)
+        })
+    }
+
+    ngOnInit(): void {
+        this.getProjects();
+    }
+
+    onDelete(project: Project) {
+        if (!project._id) {
+            return;
+        }
+        this.api.deleteProject(project._id).subscribe({
+            next: (data: Project) => this.getProjects(),
             error: (err) => console.log(err)
         })
     }
