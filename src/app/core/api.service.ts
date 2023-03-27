@@ -32,7 +32,7 @@ export class ApiService {
     }
 
     getTasks(): Observable<Array<Task>> {
-        return this.GET<Task>(`tasks`);
+        return this.GET<Array<Task>>(`tasks`);
     }
 
     addProject(project: Project): Observable<Project> {
@@ -40,12 +40,16 @@ export class ApiService {
     }    
 
     getProjects(): Observable<Array<Project>> {
-        return this.GET<Project>(`projects`);
+        return this.GET<Array<Project>>(`projects`);
+    }
+
+    getOneProject(id: string): Observable<Project> {
+        return this.GET<Project>(`projects/${id}`);
     }    
 
-    GET<DynamicType>(endpoin: string): Observable<Array<DynamicType>> {
-        return this.http.get<Array<DynamicType>>(
-            `${this.serverUrl}${endpoin}`,
+    GET<DynamicType>(endpoint: string): Observable<DynamicType> {
+        return this.http.get<DynamicType>(
+            `${this.serverUrl}${endpoint}`,
             {
                 headers: {
                     'x-auth-token': this.getToken()
@@ -114,6 +118,19 @@ export class ApiService {
             }
         )
     }
+
+    updateProject(id: string, project: Project): Observable<Project> {
+        return this.http.put<Project>(
+            `${this.serverUrl}projects/${id}`,
+            project,
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-auth-token': this.getToken()
+                }
+            }
+        )
+    }    
 
     signup(user: User): Observable<User> {
         return this.POST<User>('users/signup', user);

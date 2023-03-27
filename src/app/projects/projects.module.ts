@@ -5,6 +5,7 @@ import { ProjectPageComponent } from './project-page/project-page.component';
 import { AddProjectComponent } from './add-project/add-project.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { EditProjectComponent } from './edit-project/edit-project.component';
 
 
 
@@ -12,7 +13,8 @@ import { RouterModule } from '@angular/router';
   declarations: [
     ProjectCardComponent,
     ProjectPageComponent,
-    AddProjectComponent
+    AddProjectComponent,
+    EditProjectComponent
   ],
   imports: [
     CommonModule,
