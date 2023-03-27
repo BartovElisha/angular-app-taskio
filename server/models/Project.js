@@ -15,11 +15,10 @@ const projectSchema = new mongoose.Schema({
     image: {
         url: {
             type: String,
-            required: true,
             minlength: 2,
             maxlength: 1024,
         },
-        alt: { type: String, required: true, minlength: 2, maxlength: 256 },
+        alt: { type: String, minlength: 2, maxlength: 256 },
     },
     status: {
         type: String,

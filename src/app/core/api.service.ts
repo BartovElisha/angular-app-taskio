@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Task, User } from '../app.component';
+import { Project, Task, User } from '../app.component';
 
 @Injectable({
     providedIn: 'root'
@@ -32,8 +32,20 @@ export class ApiService {
     }
 
     getTasks(): Observable<Array<Task>> {
-        return this.http.get<Array<Task>>(
-            `${this.serverUrl}tasks`,
+        return this.GET<Task>(`tasks`);
+    }
+
+    addProject(project: Project): Observable<Project> {
+        return this.POST<Project>('projects', project);
+    }    
+
+    getProjects(): Observable<Array<Project>> {
+        return this.GET<Project>(`projects`);
+    }    
+
+    GET<DynamicType>(endpoin: string): Observable<Array<DynamicType>> {
+        return this.http.get<Array<DynamicType>>(
+            `${this.serverUrl}${endpoin}`,
             {
                 headers: {
                     'x-auth-token': this.getToken()
@@ -57,15 +69,15 @@ export class ApiService {
     }
 
     addTask(task: Task): Observable<Task> {
-        return this.POST('tasks',task);
-        
+        return this.POST('tasks', task);
+
         // Old version
         // return this.http.post<Task>(
         //     `${this.serverUrl}tasks`,
         //     task,
         //     { headers: { 'Content-Type': 'application/json' } }
         // )
-    }    
+    }
 
     deleteTask(id: string): Observable<Task> {
         return this.http.delete<Task>(
@@ -89,7 +101,7 @@ export class ApiService {
                     'x-auth-token': this.getToken()
                 }
             }
-        )   
+        )
     }
 
     signup(user: User): Observable<User> {
@@ -98,5 +110,5 @@ export class ApiService {
 
     login(user: User): Observable<User> {
         return this.POST<User>('users/login', user);
-    }    
+    }
 }

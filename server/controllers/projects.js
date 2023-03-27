@@ -40,8 +40,9 @@ module.exports = {
         try {
             const schema = joi.object({
                 title: joi.string().min(2).max(256).required(),
-                description: joi.string().min(2).max(1024).required(),
-                complete: joi.boolean(),
+                description: joi.string().min(2).max(1024),
+                status: joi.string().required(),
+                image: joi.string().allow(null, '')
             });
 
             const { error, value } = schema.validate(req.body);

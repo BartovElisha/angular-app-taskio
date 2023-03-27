@@ -1,1 +1,23 @@
-<p>project-page works!</p>
+<h2 class="text-center my-3">
+  Projects
+</h2>
+
+<div class="my-4">
+  <a routerLink="/add-project" class="btn btn-primary">
+    Add Project
+  </a>
+</div>
+
+<ul class="list-group">
+  <li *ngFor="let project of projects" class="list-group-item d-flex justify-content-between align-items-center">
+    {{project.title}}: {{project.description}} ({{project.status}})
+    <div>
+      <button class="btn btn-light">
+        <i class="bi bi-pencil text-primary"></i>
+      </button>
+      <button class="btn btn-light">
+        <i class="bi bi-trash text-danger"></i>
+      </button>
+    </div>
+  </li>
+</ul>
